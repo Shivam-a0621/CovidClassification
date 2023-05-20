@@ -1,19 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <title>Covid app</title>
+  <meta charset="utf-8">
+  <title>Upload Image</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #FFC0CB, #87CEFA); /* Gradient background color */
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      color: red;
+    }
+
+    img {
+      display: block;
+      max-width: 500px;
+      max-height: 500px;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
+    h2, h3 {
+      text-align: center;
+    }
+
+    input[type="file"],
+    input[type="submit"] {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="file"]:hover,
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    {% if name%}
-    <h1>Hello {{name}}!</h1>
-    {%else %}
-    <h1> Hello World</h1>
-    {%endif%}
-
-    
+  <h1>Upload Image</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Upload">
+  </form>
+  {% if last_file_path %}
+    <h2>Last uploaded image:</h2>
+    <img src="uploads\cest.jpeg" alt="last uploaded image">
+    {% if class_name %}
+      <h3>Predicted class: {{ class_name }}</h3>
+    {% endif %}
+  {% endif %}
 </body>
 </html>

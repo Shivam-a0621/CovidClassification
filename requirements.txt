@@ -1,0 +1,7 @@
+matplotlib
+pandas
+psutil
+PyYAML
+seaborn
+torchvision
+tqdm
